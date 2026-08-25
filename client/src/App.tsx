@@ -46,7 +46,6 @@ const nav = [
   { label: "Audit Trail", href: "/audit", icon: FileSearch, group: "AI" },
   { label: "Settings", href: "/settings", icon: Settings, group: "System" },
 ];
-
 function Logo({ collapsed = false }: { collapsed?: boolean }) {
   return <div className="flex items-center gap-3"><img src="/manus-storage/revive-logo_3c65231e.png" className="h-8 w-8 object-contain" alt="REVIVE mark" /><span className={`font-display text-[15px] font-bold tracking-[-0.04em] text-ink ${collapsed ? "hidden" : "block"}`}>REVIVE <span className="font-normal text-cobalt">AI</span></span></div>;
 }

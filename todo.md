@@ -1,0 +1,38 @@
+# REVIVE AI Change Checklist
+
+- [x] Read and extract the requested changes from `pasted_content_2.txt`.
+- [x] Map each requested change to the relevant REVIVE AI frontend files and components.
+- [x] Implement the requested visual and interaction updates, including intentional backend and database changes from the attached brief.
+- [x] Run type-check and production build validation.
+- [x] Capture representative responsive previews and inspect for regressions.
+- [ ] Save a new checkpoint and deliver the updated project.
+
+## Attached Brief Requirements
+
+- [x] Add merchants, customers, payments, revenue_risk, recovery_cases, recovery_actions, payment_links, agent_logs, and webhook_events to the Drizzle schema.
+- [x] Add required indexes, foreign keys, UUID identifiers, timestamps, JSON fields, and safe merchant-scoped access patterns.
+- [x] Generate and apply the database migration through the managed database workflow.
+- [x] Add server-side dashboard, payment, recovery, agent, audit, and simulator query helpers.
+- [x] Add protected tRPC procedures and connect the existing React service layer through typed API calls.
+- [x] Replace dashboard mock metrics with calculated database-backed metrics while preserving the existing UI.
+- [x] Seed realistic synthetic demo data without exposing secrets.
+- [x] Add Vitest coverage for the new server query/procedure behavior.
+
+## Gap Resolution
+
+- [x] Replace shared first-merchant lookup with authenticated email-scoped merchant resolution.
+- [x] Add missing payment and simulator server helpers and protected procedures.
+- [x] Route dashboard data through the client service abstraction and add loading/error states.
+- [x] Verify and execute demo seeding, then confirm row counts.
+- [x] Expand Vitest coverage for protected data contracts and query behavior.
+- [x] Capture updated desktop, tablet, and mobile previews after full-stack changes.
+- [x] Update the prior checklist wording to reflect intentional backend changes.
+- [x] Ensure the scaffold users table exists in the managed database for OAuth callbacks.
+- [x] Add authenticated and unauthenticated procedure tests for dashboard, recovery, agent, audit, and simulator routes.
+- [x] Add merchant-scoped seeded-output assertions to server tests.
+- [x] Add anonymous-access assertions for every protected REVIVE procedure.
+- [x] Assert seeded merchant record contents and exclusion of another merchant’s records.
+- [x] Add a second-merchant fixture with distinct payment, recovery, agent, and audit records and assert cross-merchant exclusion.
+- [x] Strengthen seeded assertions with concrete counts and representative identifiers/events.
+- [x] Assert primary dashboard, agent activity, and audit results exclude the second merchant fixture.
+- [x] Assert the second authenticated merchant receives only its own agent and audit records.

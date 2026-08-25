@@ -57,3 +57,35 @@
 - [x] Add a documented Supabase auth bridge requirement and realtime/RLS SQL policies for merchant-scoped updates.
 - [x] Add deterministic tests for webhook signatures, idempotency behavior, policy eligibility, and protected payment-link invocation.
 - [x] Run final verification and save a fresh post-Razorpay checkpoint for delivery.
+
+## REVIVE AI Recovery Agent
+
+- [x] Define structured agent decision schema and modular tool contracts.
+- [x] Implement get_payment, get_customer_history, predict_recovery, and get_recovery_policy tools with deterministic prediction.
+- [x] Implement policy-gated create_payment_link, escalate_case, and stop_recovery actions.
+- [x] Add structured LLM JSON output and tool-calling orchestration on the server side only.
+- [x] Log every agent step, tool call, output, policy result, and final decision to agent_logs.
+- [x] Add recovery-agent authentication and hard rules for captured payments, retry/contact limits, unsupported actions, and policy overrides.
+- [x] Display live agent and audit logs in the existing Agent and Audit pages.
+- [x] Add tests for prediction boundaries, policy enforcement, tool safety, structured decisions, and audit logging.
+- [x] Run regression verification and save a fresh recovery-agent checkpoint.
+
+## Recovery Agent Hardening
+
+- [x] Implement a real LLM tool-calling loop that executes read tools and feeds tool results back into the model before final JSON output.
+- [x] Keep action tools policy-gated and prevent the model from directly executing unsupported or unsafe actions.
+- [x] Fix Agent page invocation to pass a real payment ID rather than a recovery-case ID.
+- [x] Add tests for audit-log writes and protected action/tool execution paths.
+- [x] Run final regression validation and save a fresh recovery-agent checkpoint.
+
+## Live Log Loading Fix
+
+- [x] Keep Agent and Audit pages usable when Supabase is not configured or the user has no Supabase session.
+- [x] Add a safe fallback to the existing server-backed REVIVE activity and audit data.
+- [x] Re-verify the pages without error toasts after the fallback is wired.
+
+## Final Recovery-Agent Verification
+
+- [x] Add direct unit coverage for agent_logs insertion payloads and policy-gated action execution/deferment.
+- [x] Save a fresh checkpoint after the latest recovery-agent changes and deliver it.
+- [ ] Create and deliver a new checkpoint containing the completed recovery-agent implementation.

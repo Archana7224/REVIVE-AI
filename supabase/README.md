@@ -1,0 +1,7 @@
+# REVIVE AI Razorpay Edge Functions
+
+These functions are designed for the Supabase project that owns the REVIVE recovery tables. The browser invokes `razorpay-create-payment-link` with a Supabase access token. The existing REVIVE Manus OAuth session is not itself a Supabase access token, so production must either sign users in with Supabase Auth as well or exchange the application session for a short-lived Supabase JWT in a trusted server-side bridge before invoking the function. The browser must never receive `SUPABASE_SERVICE_ROLE_KEY`, `RAZORPAY_KEY_SECRET`, or `RAZORPAY_WEBHOOK_SECRET`.
+
+Configure the following server-side Supabase secrets: `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`, and `SUPABASE_SERVICE_ROLE_KEY`. Configure the public browser variables `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Set the Razorpay webhook URL to the deployed `razorpay-webhook` function, use the same webhook secret, and subscribe to `payment.failed`, `payment.authorized`, `payment.captured`, and `order.paid`.
+
+Before applying `supabase/migrations/20260825_razorpay_rls.sql`, confirm that `merchants.owner_id` maps to `auth.users.id`. The migration enables RLS, adds merchant-scoped read policies, and publishes `recovery_cases` and `payments` for Realtime updates. Edge Functions use the service-role client only after authenticating and authorizing the request or validating the Razorpay webhook signature.

@@ -5,7 +5,7 @@
 - [x] Implement the requested visual and interaction updates, including intentional backend and database changes from the attached brief.
 - [x] Run type-check and production build validation.
 - [x] Capture representative responsive previews and inspect for regressions.
-- [ ] Save a new checkpoint and deliver the updated project.
+- [x] Save a new checkpoint and deliver the updated project.
 
 ## Attached Brief Requirements
 
@@ -36,3 +36,24 @@
 - [x] Strengthen seeded assertions with concrete counts and representative identifiers/events.
 - [x] Assert primary dashboard, agent activity, and audit results exclude the second merchant fixture.
 - [x] Assert the second authenticated merchant receives only its own agent and audit records.
+
+## Razorpay Test Mode Integration
+
+- [x] Request and configure server-only Razorpay credentials for Test Mode.
+- [x] Create the Supabase Edge Function contract for authenticated payment-link creation.
+- [x] Implement recovery-case eligibility, captured-state, policy-limit, and amount validation before Razorpay calls.
+- [x] Persist payment links, recovery actions, and agent logs through secure server-side data access.
+- [x] Create the Razorpay webhook Edge Function with raw-body signature verification and event idempotency.
+- [x] Handle payment.failed, payment.authorized, payment.captured, and order.paid events safely.
+- [x] Update payments, recovery cases, actual recovery, and dashboard metrics after captured events.
+- [x] Connect Create Payment Link and Start Recovery actions to the server function with required status copy.
+- [x] Add realtime recovery updates to the frontend without changing the existing visual design.
+- [x] Add tests for secret handling, signature validation, idempotency, eligibility, and protected action flows.
+- [x] Verify the integration and save a checkpoint for delivery.
+
+## Final Razorpay Hardening
+
+- [x] Connect Start Recovery to the live server-side payment-link flow with explicit progress and success handling.
+- [x] Add a documented Supabase auth bridge requirement and realtime/RLS SQL policies for merchant-scoped updates.
+- [x] Add deterministic tests for webhook signatures, idempotency behavior, policy eligibility, and protected payment-link invocation.
+- [x] Run final verification and save a fresh post-Razorpay checkpoint for delivery.

@@ -1,0 +1,3 @@
+# Razorpay Integration References
+
+Razorpay documents webhooks for payment-flow events including orders and payments: [About Webhooks](https://razorpay.com/docs/webhooks/?preferred-country=US). The payments webhook documentation confirms that `payment.captured` and `order.paid` reflect a captured payment: [Payments Webhook Events](https://razorpay.com/docs/webhooks/payments/?preferred-country=US). Razorpay documents creating Payment Links through the API and recommends Test Mode for testing: [Create a Payment Link](https://razorpay.com/docs/payments/payment-links/create/?preferred-country=US). Razorpay also documents testing webhook delivery in Test Mode: [Validate and Test Webhooks](https://razorpay.com/docs/webhooks/validate-test/?preferred-country=US).

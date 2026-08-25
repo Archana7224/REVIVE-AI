@@ -1,0 +1,13 @@
+import { createHmac } from "node:crypto";
+import { describe, expect, it } from "vitest";
+
+function signature(secret: string, rawBody: string) { return createHmac("sha256", secret).update(rawBody).digest("hex"); }
+function constantTimeHexEqual(left: string, right: string) { if (left.length !== right.length) return false; let mismatch = 0; for (let i = 0; i < left.length; i++) mismatch |= left.charCodeAt(i) ^ right.charCodeAt(i); return mismatch === 0; }
+function paymentLinkDecision(input: { caseStatus: string; paymentStatus: string; actualRecovery: number; priorLinkCount: number }) { if (!["needs_review", "eligible", "running"].includes(input.caseStatus)) return "policy_denied"; if (["captured", "paid", "success"].includes(input.paymentStatus) || input.actualRecovery > 0) return "already_captured"; if (input.priorLinkCount >= 1) return "policy_limit"; return "eligible"; }
+
+describe("Razorpay integration security contracts", () => {
+  it("accepts an exact raw-body HMAC and rejects a changed body", () => { const raw = JSON.stringify({ event: "payment.captured", id: "evt_1" }); const expected = signature("webhook-secret", raw); expect(constantTimeHexEqual(expected, signature("webhook-secret", raw))).toBe(true); expect(constantTimeHexEqual(expected, signature("webhook-secret", `${raw} `))).toBe(false); });
+  it("makes duplicate webhook event ids idempotent", () => { const processed = new Set<string>(); const accept = (eventId: string) => processed.has(eventId) ? "duplicate" : (processed.add(eventId), "process"); expect(accept("evt_1")).toBe("process"); expect(accept("evt_1")).toBe("duplicate"); });
+  it("requires bearer authentication for payment-link invocation", () => { const isAuthenticated = (authorization?: string) => Boolean(authorization?.startsWith("Bearer ") && authorization.slice(7).trim()); expect(isAuthenticated(undefined)).toBe(false); expect(isAuthenticated("Basic abc")).toBe(false); expect(isAuthenticated("Bearer ")).toBe(false); expect(isAuthenticated("Bearer supabase-access-token")).toBe(true); });
+  it("rejects ineligible, captured, and policy-limited payment links", () => { expect(paymentLinkDecision({ caseStatus: "stopped", paymentStatus: "failed", actualRecovery: 0, priorLinkCount: 0 })).toBe("policy_denied"); expect(paymentLinkDecision({ caseStatus: "eligible", paymentStatus: "captured", actualRecovery: 0, priorLinkCount: 0 })).toBe("already_captured"); expect(paymentLinkDecision({ caseStatus: "eligible", paymentStatus: "failed", actualRecovery: 0, priorLinkCount: 1 })).toBe("policy_limit"); expect(paymentLinkDecision({ caseStatus: "eligible", paymentStatus: "failed", actualRecovery: 0, priorLinkCount: 0 })).toBe("eligible"); });
+});

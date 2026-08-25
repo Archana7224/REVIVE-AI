@@ -88,4 +88,45 @@
 
 - [x] Add direct unit coverage for agent_logs insertion payloads and policy-gated action execution/deferment.
 - [x] Save a fresh checkpoint after the latest recovery-agent changes and deliver it.
-- [ ] Create and deliver a new checkpoint containing the completed recovery-agent implementation.
+- [x] Create and deliver a new checkpoint containing the completed recovery-agent implementation.
+
+## Buildathon Product-Quality Pass
+
+- [x] Audit the current dashboard and key demo routes for hierarchy, density, and first-10-second clarity.
+- [x] Refine typography, spacing, metric cards, chart presentation, and AI recommendation prominence.
+- [x] Improve loading, empty, error, toast, and confirmation states without changing core functionality.
+- [x] Add subtle metric, recovery, status, and agent activity motion with reduced-motion support.
+- [x] Improve financial action detail presentation with amount, expected recovery, probability, friction, policy, and reason.
+- [x] Improve recovery status indicators and audit trail readability.
+- [x] Verify desktop and mobile demo flows, then run tests and production build.
+- [x] Save and deliver the polished buildathon checkpoint.
+
+## Post-Review Product Polish
+
+- [x] Make targeted dashboard edits that sharpen first-10-second clarity, metric emphasis, chart framing, and REVIVE recommendation visibility.
+- [x] Make recovery actions consistently show amount, expected recovery, probability, friction, policy status, and reason.
+- [x] Add explicit dashboard/recovery confirmation, loading, and error states.
+- [x] Add concrete metric-update and recovered-revenue motion with reduced-motion support.
+- [x] Capture fresh post-change desktop and mobile screenshots for dashboard, recovery, Agent, and Audit.
+- [x] Run tests, type-check, and production build after the polish changes.
+- [x] Save and deliver a new polished checkpoint.
+
+## Final Post-Review Corrections
+
+- [x] Make the dashboard recommendation and chart framing materially more prominent in Home.tsx.
+- [x] Add the required financial-action fields to recovery table rows and their action review surface.
+- [x] Add explicit Recovery loading, empty, error, and confirmation states in the current workflow.
+- [x] Implement concrete metric-value and recovered-revenue animation behavior with reduced-motion fallback.
+- [x] Capture fresh post-polish desktop screenshots for Recovery, Agent, and Audit as well as Dashboard.
+- [x] Save and deliver a new checkpoint after the final corrections.
+
+## Last Polish Gaps
+
+- [x] Add explicit Recovery empty and error-state panels with a retry path.
+- [x] Apply the recovered-revenue animation class to the actual recovered metric.
+- [x] Save and deliver a fresh checkpoint after these final corrections.
+
+## Reachable Recovery Error State
+
+- [x] Wire Recovery refresh failure into the visible error panel with a retry action.
+- [x] Re-run final tests and build, then save and deliver a fresh polished checkpoint.

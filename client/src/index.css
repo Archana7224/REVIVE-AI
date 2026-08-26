@@ -73,3 +73,31 @@ button:active { transform:scale(.97); }
 @keyframes recoveryGlow { 0% { color:var(--mint-strong); text-shadow:0 0 0 rgba(48,148,95,0); } 45% { color:#227247; text-shadow:0 0 16px rgba(48,148,95,.28); } 100% { color:inherit; text-shadow:none; } }
 @media(max-width:760px){.demo-signal-banner{align-items:flex-start;flex-direction:column;padding:13px}.demo-signal-banner button{width:100%}.chart-kicker{position:static;margin-bottom:4px}}
 @media(prefers-reduced-motion:reduce){.metric-value-live,.recovered-value{animation:none!important}}
+
+/* Recovery Graph: a compact visual trace of bounded agent decisions. */
+.recovery-graph{position:relative;overflow:hidden;padding:20px 22px;background:linear-gradient(115deg,#fff 0%,#fbfcff 100%);border-color:#dce4fa}
+.recovery-graph:before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:3px;background:var(--cobalt)}
+.recovery-graph-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+.recovery-graph-subtitle{max-width:560px;margin-top:6px;color:var(--muted);font-size:12px;line-height:1.5}
+.recovery-graph-status{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:var(--muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.recovery-graph-canvas{display:flex;align-items:stretch;gap:8px;margin-top:22px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin}
+.recovery-graph-step{display:flex;min-width:148px;align-items:center;gap:8px}
+.recovery-graph-node{display:flex;min-height:86px;flex:1;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:11px;text-align:left;transition:transform .18s var(--ease-out),border-color .18s,box-shadow .18s}
+.recovery-graph-node:hover{transform:translateY(-2px);border-color:#9eb4f2;box-shadow:0 8px 20px rgba(40,85,217,.1)}
+.recovery-graph-node:focus-visible{outline:3px solid #2855d933;outline-offset:2px;border-color:var(--cobalt)}
+.recovery-graph-node-icon{display:flex;height:28px;width:28px;flex:none;align-items:center;justify-content:center;border-radius:6px}
+.recovery-graph-node-copy{display:flex;min-width:0;flex-direction:column;gap:3px}
+.recovery-graph-node-copy strong{color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:-.02em}
+.recovery-graph-node-copy small{color:var(--muted);font-size:10px;line-height:1.25}
+.recovery-graph-eyebrow{color:var(--muted);font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.recovery-graph-node-coral .recovery-graph-node-icon{background:#fde9e6;color:var(--coral-dark)}
+.recovery-graph-node-blue .recovery-graph-node-icon{background:#eef2ff;color:var(--cobalt)}
+.recovery-graph-node-amber .recovery-graph-node-icon{background:#fff3d9;color:var(--amber-dark)}
+.recovery-graph-node-mint .recovery-graph-node-icon{background:var(--mint);color:var(--mint-dark)}
+.recovery-graph-connector{display:flex;flex:none;align-items:center;color:#9eb4f2}
+.recovery-graph-footer{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:10px}
+.recovery-graph-footer span{display:inline-flex;align-items:center}
+.bg-coral{background:var(--coral)}
+@media(max-width:900px){.recovery-graph-canvas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.recovery-graph-step{min-width:0}.recovery-graph-connector{justify-content:center}.recovery-graph-step:nth-child(3) .recovery-graph-connector{transform:rotate(90deg)}.recovery-graph-step:nth-child(4) .recovery-graph-connector{transform:rotate(90deg)}}
+@media(max-width:640px){.recovery-graph{padding:17px 16px}.recovery-graph-header{flex-direction:column;gap:10px}.recovery-graph-status{font-size:9px}.recovery-graph-canvas{display:flex;flex-direction:column;gap:0;margin-top:18px}.recovery-graph-step{width:100%;flex-direction:column;gap:4px}.recovery-graph-node{width:100%;min-height:0}.recovery-graph-connector{height:22px;transform:rotate(90deg)!important}.recovery-graph-footer{gap:9px 13px}}
+@media(prefers-reduced-motion:reduce){.recovery-graph-node{transition:none}}

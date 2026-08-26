@@ -217,11 +217,27 @@
 - [x] Inspect and clarify the vertical line in the REVIVE Intelligence card, preserving intentional Signal Paper styling without visual ambiguity.
 - [x] Add regression coverage for dashboard control destinations and export behavior.
 - [x] Run interaction verification, tests, type-check, production build, and responsive screenshots.
-- [ ] Save and publish the verified dashboard-control checkpoint.
-- [ ] Report the root causes, line styling explanation, and verification constraints to the user.
+- [x] Save and publish the verified dashboard-control checkpoint; checkpoint 42d7ffbf is live.
+- [x] Report the root causes, line styling explanation, and verification constraints to the user.
 
 ## Dashboard Control Hardening Gaps
 
 - [x] Add a safe export wrapper with try/catch and an error toast when CSV generation or download initiation fails.
 - [x] Preserve Review queue context when navigating to `/recovery`, using an explicit queue query parameter and visible queue state.
 - [x] Clarify the REVIVE Intelligence rail in-product with an accessible design label or supporting microcopy, then re-verify visually.
+
+## Recovery Graph
+
+- [x] Define the Recovery Graph node and edge data contract using existing recovery opportunity and dashboard data.
+- [x] Implement a responsive Recovery Graph component in the dashboard using the Signal Paper visual language.
+- [x] Add accessible labels, focus states, and clear action affordances for graph nodes.
+- [x] Add regression coverage for graph structure, data mapping, and navigation behavior.
+- [x] Verify the graph on desktop and mobile, then run Vitest, TypeScript, and production build checks.
+- [ ] Save a verified checkpoint and synchronize the connected GitHub repository.
+- [ ] Report the implementation and verification results to the user.
+
+## Recovery Graph Hardening
+
+- [x] Refactor RecoveryGraph to receive nodes derived from existing dashboard/recovery data rather than an internal hardcoded node list.
+- [x] Introduce an explicit edge structure and render connectors from the edge contract.
+- [x] Replace source-string graph assertions with component-level rendering and navigation tests.

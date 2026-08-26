@@ -199,11 +199,11 @@
 - [x] Implement a robust independently scrollable recovery drawer with accessible keyboard and touch behavior.
 - [x] Add focused regression coverage for drawer overflow and scroll-lock restoration.
 - [x] Run tests, type-check, production build, and desktop/mobile visual verification.
-- [ ] Save a verified checkpoint and sync the connected GitHub repository.
-- [ ] Report the root cause, constraints, and verification results to the user.
+- [x] Save a verified checkpoint and sync the connected GitHub repository; checkpoint 531f9c96 was created and `git push user_github HEAD:main` confirmed `Everything up-to-date`.
+- [x] Report the root cause, constraints, and verification results to the user.
 
 ## Verification Gaps Found During Scrollbar Repair
 
 - [x] Reproduce the pre-fix drawer behavior under a mobile-height constraint and record the measured overflow failure.
 - [x] Include the drawer regression test in Vitest discovery and confirm it executes in the test output.
-- [ ] Save a fresh checkpoint that explicitly captures the verified scrollbar repair after the regression test is executing.
+- [x] Save a fresh checkpoint that explicitly captures the verified scrollbar repair after the regression test is executing; checkpoint 531f9c96 captures the passing regression suite and runtime proof.

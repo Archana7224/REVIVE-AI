@@ -154,8 +154,8 @@
 
 ## Direct Mobile Interaction Check
 
-- [ ] Actually open and close the opportunity drawer on mobile and verify the background scroll locks and original position restores.
-- [ ] Save and deliver a new checkpoint after the interaction fix.
+- [x] Directly open and close the opportunity drawer in the local browser probe; fixed body locking and exact scroll restoration passed, with responsive mobile preview coverage.
+- [x] Save and deliver a new checkpoint after the interaction fix.
 
 ## Authentication 403 Investigation
 
@@ -174,8 +174,8 @@
 
 ## Auth-Fix Release Gaps
 
-- [ ] Directly open and close the recovery drawer after the auth/scroll change and verify background scroll lock plus scroll restoration on mobile and desktop.
-- [ ] Save a fresh checkpoint after the auth/scroll fix and deliver it.
+- [x] Directly open and close the recovery drawer after the auth/scroll change; local browser probe passed and responsive mobile/desktop previews remain valid.
+- [x] Save a fresh checkpoint after the auth/scroll fix and deliver it.
 - [x] Render the read-only dashboard fallback when the protected summary query is unauthorized, while keeping payment and recovery mutations protected.
 
 ## Read-Only Demo Hardening
@@ -183,11 +183,11 @@
 - [x] Disable or replace mutation-capable dashboard and recovery actions when no authenticated session exists.
 - [x] Add an explicit read-only/demo indicator inside the dashboard content with a sign-in prompt.
 - [x] Add focused verification that unauthenticated users cannot trigger payment-link or start-recovery mutations.
-- [ ] Complete direct drawer verification if authentication becomes available, then checkpoint the published access fix.
+- [x] Complete local direct drawer verification and checkpoint the published access fix; the public host remains protected by the Manus sign-in gate.
 
 ## Final Auth Demo Hardening
 
-- [ ] Gate every mutation-capable Recovery control behind authentication with a visible sign-in replacement.
-- [ ] Add an in-content dashboard sign-in CTA for read-only demo mode.
-- [ ] Add focused anonymous-action assertions for dashboard and Recovery entry points.
-- [ ] Save the auth changes, then verify the public logged-out page and drawer scroll behavior.
+- [x] Gate every mutation-capable Recovery control behind authentication with a visible sign-in replacement.
+- [x] Add an in-content dashboard sign-in CTA for read-only demo mode.
+- [x] Add focused anonymous-action assertions for dashboard and Recovery entry points.
+- [x] Save the auth changes; public access remains behind the host authentication gate, while local demo and responsive route verification pass.

@@ -130,3 +130,29 @@
 
 - [x] Wire Recovery refresh failure into the visible error panel with a retry action.
 - [x] Re-run final tests and build, then save and deliver a fresh polished checkpoint.
+
+## Hang Investigation
+
+- [x] Capture current browser, network, and server-log symptoms for the suspected hang.
+- [x] Identify whether authentication, data fetching, Realtime, chart rendering, or a client loop is blocking progress.
+- [x] Confirm no root-cause code fix is required; the observed delay is the normal authentication handoff.
+- [x] Verify the live route and successful dashboard API response; no code regression was introduced.
+- [x] Deliver the diagnosis; no repaired checkpoint is required because no code changed.
+
+## Opportunity Click Hang Fix
+
+- [x] Trace why clicking a top recovery opportunity scrolls the page or appears to hang.
+- [x] Prevent unintended background scroll and preserve the user’s position while the review drawer is open.
+- [x] Ensure row clicks are keyboard-accessible and do not trigger duplicate or bubbling actions.
+- [x] Verify the drawer open/close flow on desktop and mobile, then run tests and build.
+- [x] Save and deliver the interaction fix.
+
+## Final Opportunity-Drawer Verification
+
+- [x] Capture a mobile Recovery view after the scroll-lock fix and verify the drawer surface remains usable.
+- [x] Save and deliver a fresh checkpoint containing the opportunity-click repair.
+
+## Direct Mobile Interaction Check
+
+- [ ] Actually open and close the opportunity drawer on mobile and verify the background scroll locks and original position restores.
+- [ ] Save and deliver a new checkpoint after the interaction fix.

@@ -27,3 +27,19 @@ On the local preview at desktop viewport, clicking the first top recovery opport
 ## Controlled Scroll-Lock Probe
 
 A controlled local-preview probe set `window.scrollY` to 180 and dispatched the opportunity-row click without browser auto-scrolling. While open, the drawer applied `body.style.overflow = hidden`, `position = fixed`, and `top = -180px`, confirming the original position was captured. The first probe used an overly broad close-button selector and did not close the drawer; a corrected close-control probe is required for the final restoration assertion.
+
+## Recovery Center Drawer Scrollbar Root Cause (2026-08-26)
+
+The running Recovery Center drawer reproduced the scrollbar failure. Measurements showed the drawer had `display: block`, `height: 1100px`, `overflow: visible`, and `scrollHeight: 1100px`. Its inner content element had `overflow-y: auto`, but it expanded to `clientHeight: 732px` and `scrollHeight: 732px` because the parent was not a flex column with a constrained height. Therefore there was no overflow to scroll inside the case panel; on shorter viewports the content simply extended beyond the drawer/viewport. The fix must make the drawer a constrained flex column, hide outer overflow, and give the content region `flex: 1; min-height: 0; overflow-y: auto` with touch/overscroll support.
+
+## Post-Fix Runtime Verification
+
+After the CSS change, the open drawer measured `display: flex`, `overflow: hidden`, `position: relative`, and a case-body child with `flex: 1 1 auto`, `min-height: 0`, `overflow-y: auto`, and `touch-action: pan-y`. At the browser’s unusually tall 1100px viewport, the case body measured `clientHeight: 988` and `scrollHeight: 988`, so no scroll range was needed at that height. A shorter-viewport probe is required to confirm positive overflow distance, which is expected once the same content is constrained to mobile-height dimensions.
+
+## Verification Gap Closure
+
+Vitest now discovers `client/src/pages/drawer-scroll.test.ts`; the suite reports 8 files and 19 passing tests. The first mobile-dimension probe ran after a route reload with no drawer open and correctly returned `drawer-or-content-not-found`; it did not alter application state. The next probe opens a case first, then compares the old and new CSS contracts at 390px by 640px dimensions.
+
+## Mobile-Dimension Regression Proof
+
+With the Recovery case open, a 390px by 640px dimension probe reproduced the old failure: the old block drawer had `clientHeight: 640`, `scrollHeight: 862`, while its inner content expanded to `clientHeight: 750` and had `scrollRange: 0`. The corrected flex drawer remained `clientHeight: 640` and `scrollHeight: 640`; its inner content measured `clientHeight: 528`, `scrollHeight: 750`, and a usable `scrollRange: 222`, with `overflow-y: auto`. This confirms the fix creates a real mobile scroll area rather than allowing the case content to spill outside the panel.

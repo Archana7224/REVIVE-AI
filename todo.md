@@ -191,3 +191,19 @@
 - [x] Add an in-content dashboard sign-in CTA for read-only demo mode.
 - [x] Add focused anonymous-action assertions for dashboard and Recovery entry points.
 - [x] Save the auth changes; public access remains behind the host authentication gate, while local demo and responsive route verification pass.
+
+## Recovery Drawer Scrollbar Repair
+
+- [x] Reproduce the recovery-case scrollbar failure in the local preview at desktop and mobile widths.
+- [x] Identify the drawer overflow, height, and background-scroll interaction causing the scrollbar to be unusable.
+- [x] Implement a robust independently scrollable recovery drawer with accessible keyboard and touch behavior.
+- [x] Add focused regression coverage for drawer overflow and scroll-lock restoration.
+- [x] Run tests, type-check, production build, and desktop/mobile visual verification.
+- [ ] Save a verified checkpoint and sync the connected GitHub repository.
+- [ ] Report the root cause, constraints, and verification results to the user.
+
+## Verification Gaps Found During Scrollbar Repair
+
+- [x] Reproduce the pre-fix drawer behavior under a mobile-height constraint and record the measured overflow failure.
+- [x] Include the drawer regression test in Vitest discovery and confirm it executes in the test output.
+- [ ] Save a fresh checkpoint that explicitly captures the verified scrollbar repair after the regression test is executing.

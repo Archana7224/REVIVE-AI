@@ -43,3 +43,15 @@ Vitest now discovers `client/src/pages/drawer-scroll.test.ts`; the suite reports
 ## Mobile-Dimension Regression Proof
 
 With the Recovery case open, a 390px by 640px dimension probe reproduced the old failure: the old block drawer had `clientHeight: 640`, `scrollHeight: 862`, while its inner content expanded to `clientHeight: 750` and had `scrollRange: 0`. The corrected flex drawer remained `clientHeight: 640` and `scrollHeight: 640`; its inner content measured `clientHeight: 528`, `scrollHeight: 750`, and a usable `scrollRange: 222`, with `overflow-y: auto`. This confirms the fix creates a real mobile scroll area rather than allowing the case content to spill outside the panel.
+
+## Dashboard Control Reproduction
+
+On the local dashboard, `Export report` displayed `Report export queued` but produced no file or download. `Review queue` displayed `Opening recommended recovery queue` but did not change the route. Source inspection confirms both are toast-only placeholder handlers. `View analysis` and `Investigate` are also toast-only handlers in `Home.tsx`, so they cannot navigate to the existing Revenue Leaks route. The Intelligence card’s visible vertical mark is the global `.signal-rule`/Signal Paper accent line, not a browser rendering defect; its current placement should be clarified in the card styling.
+
+## Post-Fix Dashboard Verification
+
+After the dashboard-control repair, clicking `Export report` showed `Revenue report downloaded` and invoked a real browser download link for a dated CSV report. Clicking `Review queue` changed the route to `/recovery` and showed `Recovery queue opened`, confirming the control no longer stops at a placeholder toast.
+
+`View analysis` was verified after the repair: the browser route changed to `/revenue-leaks`, and the Revenue leakage page rendered its category cards, failure-analysis chart, and AI diagnosis panel.
+
+`Investigate` was verified after the repair: the browser route changed to `/revenue-leaks`, displayed `Leakage analysis opened`, and rendered the failure-analysis chart and AI diagnosis. The thin vertical line at the left edge of REVIVE Intelligence is intentionally produced by `.signal-card:before` in the Signal Paper design system: a 3px cobalt rail from 22px below the top to 22px above the bottom. It is CSS authored by the app, not a local-computer artifact.

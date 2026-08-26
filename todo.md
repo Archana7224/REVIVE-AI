@@ -207,3 +207,21 @@
 - [x] Reproduce the pre-fix drawer behavior under a mobile-height constraint and record the measured overflow failure.
 - [x] Include the drawer regression test in Vitest discovery and confirm it executes in the test output.
 - [x] Save a fresh checkpoint that explicitly captures the verified scrollbar repair after the regression test is executing; checkpoint 531f9c96 captures the passing regression suite and runtime proof.
+
+## Dashboard Control Repair
+
+- [x] Make Export report perform a real client-side report export and show success/error feedback.
+- [x] Make Review queue navigate to the Recovery Center and preserve a clear queue context.
+- [x] Make Revenue leakage View analysis navigate to the Revenue Leaks analysis surface.
+- [x] Make REVIVE Intelligence Investigate navigate to the Revenue Leaks analysis surface.
+- [x] Inspect and clarify the vertical line in the REVIVE Intelligence card, preserving intentional Signal Paper styling without visual ambiguity.
+- [x] Add regression coverage for dashboard control destinations and export behavior.
+- [x] Run interaction verification, tests, type-check, production build, and responsive screenshots.
+- [ ] Save and publish the verified dashboard-control checkpoint.
+- [ ] Report the root causes, line styling explanation, and verification constraints to the user.
+
+## Dashboard Control Hardening Gaps
+
+- [x] Add a safe export wrapper with try/catch and an error toast when CSV generation or download initiation fails.
+- [x] Preserve Review queue context when navigating to `/recovery`, using an explicit queue query parameter and visible queue state.
+- [x] Clarify the REVIVE Intelligence rail in-product with an accessible design label or supporting microcopy, then re-verify visually.

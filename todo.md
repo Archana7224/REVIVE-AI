@@ -156,3 +156,38 @@
 
 - [ ] Actually open and close the opportunity drawer on mobile and verify the background scroll locks and original position restores.
 - [ ] Save and deliver a new checkpoint after the interaction fix.
+
+## Authentication 403 Investigation
+
+- [x] Identify whether the 403 comes from Manus OAuth, Google/Microsoft/Apple provider access, or the REVIVE route.
+- [x] Correct the unsupported authentication handoff or document the required provider setup without weakening security.
+- [x] Verify the public app entry and recovery demo path after the fix; authenticated callback remains provider-controlled.
+- [x] Run tests/build and save a checkpoint for the code changes.
+
+## Auth and Scroll Access Fix
+
+- [x] Stop automatic unauthenticated redirect loops that lead users into the deleted-account screen.
+- [x] Add a visible, honest session state with a usable sign-in action and demo fallback for read-only product exploration.
+- [x] Keep financial mutations gated behind authentication without weakening server-side protection.
+- [x] Ensure the document/page scrolls normally on all routes and the drawer only locks background scrolling while open.
+- [x] Verify mobile and desktop scroll, sign-in/demo behavior, and recovery drawer behavior; run tests/build and checkpoint.
+
+## Auth-Fix Release Gaps
+
+- [ ] Directly open and close the recovery drawer after the auth/scroll change and verify background scroll lock plus scroll restoration on mobile and desktop.
+- [ ] Save a fresh checkpoint after the auth/scroll fix and deliver it.
+- [x] Render the read-only dashboard fallback when the protected summary query is unauthorized, while keeping payment and recovery mutations protected.
+
+## Read-Only Demo Hardening
+
+- [x] Disable or replace mutation-capable dashboard and recovery actions when no authenticated session exists.
+- [x] Add an explicit read-only/demo indicator inside the dashboard content with a sign-in prompt.
+- [x] Add focused verification that unauthenticated users cannot trigger payment-link or start-recovery mutations.
+- [ ] Complete direct drawer verification if authentication becomes available, then checkpoint the published access fix.
+
+## Final Auth Demo Hardening
+
+- [ ] Gate every mutation-capable Recovery control behind authentication with a visible sign-in replacement.
+- [ ] Add an in-content dashboard sign-in CTA for read-only demo mode.
+- [ ] Add focused anonymous-action assertions for dashboard and Recovery entry points.
+- [ ] Save the auth changes, then verify the public logged-out page and drawer scroll behavior.

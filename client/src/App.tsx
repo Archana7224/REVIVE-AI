@@ -33,6 +33,8 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import Home from "@/pages/Home";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { startLogin } from "./const";
 import NotFound from "@/pages/NotFound";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -67,7 +69,10 @@ function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobileOpen }: { colla
 }
 
 function Topbar({ onMenu }: { onMenu: () => void }) {
-  return <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-line bg-paper/90 px-5 backdrop-blur-md lg:px-8"><div className="flex items-center gap-3"><button onClick={onMenu} className="icon-button lg:hidden"><Menu size={19} /></button><div className="hidden items-center gap-2 text-xs text-muted sm:flex"><span className="font-medium text-ink">Acme Commerce</span><span className="text-line">/</span><span>Revenue operations</span></div><div className="flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-amber-dark"><span className="h-1.5 w-1.5 rounded-full bg-amber" /> Test mode</div></div><div className="flex items-center gap-2"><button className="search-box hidden md:flex"><Search size={15} /><span>Search</span><kbd>⌘ K</kbd></button><button className="icon-button"><Bell size={17} /><span className="notification-dot" /></button><div className="ml-2 flex items-center gap-2 border-l border-line pl-3"><div className="avatar">AS</div><div className="hidden text-left sm:block"><div className="text-xs font-semibold text-ink">Aarav Shah</div><div className="text-[10px] text-muted">Admin</div></div><ChevronDown size={14} className="text-muted" /></div></div></header>;
+  const { user, loading } = useAuth();
+  const displayName = user?.name || "Demo workspace";
+  const initials = user?.name?.split(/\s+/).map(part => part[0]).join("").slice(0, 2).toUpperCase() || "DE";
+  return <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-line bg-paper/90 px-5 backdrop-blur-md lg:px-8"><div className="flex items-center gap-3"><button onClick={onMenu} className="icon-button lg:hidden"><Menu size={19} /></button><div className="hidden items-center gap-2 text-xs text-muted sm:flex"><span className="font-medium text-ink">Acme Commerce</span><span className="text-line">/</span><span>Revenue operations</span></div><div className="flex items-center gap-2 rounded-full border border-amber/30 bg-amber/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-amber-dark"><span className="h-1.5 w-1.5 rounded-full bg-amber" /> Test mode</div></div><div className="flex items-center gap-2"><button className="search-box hidden md:flex"><Search size={15} /><span>Search</span><kbd>⌘ K</kbd></button><button className="icon-button"><Bell size={17} /><span className="notification-dot" /></button><div className="ml-2 flex items-center gap-2 border-l border-line pl-3">{user ? <><div className="avatar">{initials}</div><div className="hidden text-left sm:block"><div className="text-xs font-semibold text-ink">{displayName}</div><div className="text-[10px] text-muted">{user.role === "admin" ? "Admin" : "Operator"}</div></div><ChevronDown size={14} className="text-muted" /></> : <><div className="hidden text-right sm:block"><div className="text-xs font-semibold text-ink">{loading ? "Checking session…" : "Demo workspace"}</div><div className="text-[10px] text-muted">Read-only preview</div></div><button className="button-secondary !px-3 !py-2 text-xs" onClick={() => startLogin()}>Sign in</button></>}</div></div></header>;
 }
 
 function AppLayout() {

@@ -2,7 +2,12 @@
 
 > **Detect. Diagnose. Recover. Prove.**
 
-**REVIVE AI** is an autonomous AI-powered revenue recovery platform for merchants that detects failed payments and revenue leakage, predicts which transactions are worth recovering, diagnoses the underlying failure, recommends the least-friction recovery strategy, executes bounded recovery actions through Razorpay, and continuously measures the revenue actually recovered.
+[![Track](https://img.shields.io/badge/Track-AI%20Revenue%20Recovery-6C47FF)](#-razorpay-buildathon)
+[![Status](https://img.shields.io/badge/Status-MVP-orange)](#-roadmap)
+[![Payments](https://img.shields.io/badge/Payments-Razorpay%20Test%20Mode-0d47a1)](#-razorpay-integration)
+[![License](https://img.shields.io/badge/License-MIT-green)](#-license)
+
+**REVIVE AI** is an autonomous AI-powered revenue recovery platform for merchants. It detects failed payments and revenue leakage, predicts which transactions are worth recovering, diagnoses the underlying failure, recommends the least-friction recovery strategy, executes bounded recovery actions through Razorpay, and continuously measures the revenue actually recovered.
 
 Instead of simply telling merchants:
 
@@ -14,15 +19,40 @@ REVIVE answers:
 
 ---
 
+## 📑 Table of Contents
+
+- [Razorpay Buildathon](#-razorpay-buildathon)
+- [The Problem](#-the-problem)
+- [The REVIVE AI Loop](#-the-revive-ai-loop)
+- [Key Features](#-key-features)
+- [System Architecture](#-system-architecture)
+- [AI Architecture](#-ai-architecture)
+- [Recovery Prediction Model](#-recovery-prediction-model)
+- [Database Schema](#️-database-schema)
+- [Project Structure](#-project-structure)
+- [Technology Stack](#️-technology-stack)
+- [Security Architecture](#-security-architecture)
+- [AI Safety & Guardrails](#️-ai-safety--guardrails)
+- [Product Pages](#-product-pages)
+- [Quick Start](#-quick-start)
+- [Demo Mode](#-demo-mode)
+- [End-to-End Scenario](#-example-end-to-end-scenario)
+- [Success Metrics](#-success-metrics)
+- [What Makes REVIVE Different](#-what-makes-revive-different)
+- [Why REVIVE Fits the Track](#-why-revive-fits-the-ai-revenue-recovery-track)
+- [Roadmap](#-roadmap)
+- [Hackathon Demo Script](#-5-minute-hackathon-demo)
+- [Pitches](#-one-line-pitch)
+- [Core Design Principle](#-core-design-principle)
+
+---
+
 ## 🏆 Razorpay Buildathon
 
-### Track
-
-**AI Revenue Recovery**
-
-### Product
-
-**REVIVE AI — Autonomous Revenue Recovery Agent**
+| | |
+|---|---|
+| **Track** | AI Revenue Recovery |
+| **Product** | REVIVE AI — Autonomous Revenue Recovery Agent |
 
 ### Core Idea
 
@@ -40,7 +70,7 @@ Turn failed payments into recoverable revenue using:
 
 ---
 
-# 🎯 The Problem
+## 🎯 The Problem
 
 Payment failures don't always mean lost customers.
 
@@ -56,11 +86,7 @@ Merchants lose revenue because of:
 - Checkout abandonment
 - Repeated failed payment attempts
 
-Traditional payment dashboards primarily tell merchants:
-
-> **"What happened?"**
-
-But merchants actually need to know:
+Traditional payment dashboards primarily tell merchants **"What happened?"** — but merchants actually need to know:
 
 - Which failed payments are worth recovering?
 - Which customers are likely to complete payment?
@@ -75,7 +101,7 @@ REVIVE AI turns payment failure data into an **autonomous revenue recovery loop*
 
 ---
 
-# 💡 The REVIVE AI Loop
+## 💡 The REVIVE AI Loop
 
 ```text
              PAYMENT FAILURE
@@ -129,112 +155,99 @@ REVIVE AI turns payment failure data into an **autonomous revenue recovery loop*
             └───────┬───────┘
                     │
                     └──────────► CONTINUOUS LOOP
+```
 
+---
 
+## ✨ Key Features
 
-Key Features
-1. 📊 Revenue-at-Risk Dashboard
+### 1. 📊 Revenue-at-Risk Dashboard
 
 A real-time executive dashboard showing:
 
-💰 Revenue At Risk
-🎯 Expected Recovery
-✅ Actual Revenue Recovered
-📈 Recovery Rate
-Failed Payments
-Checkout Abandonment
-Subscription Failures
-Example
-Metric	Value
-Revenue At Risk	₹3.67L
-Expected Recovery	₹2.48L
-Recovered	₹1.42L
-Recovery Rate	57.3%
+- 💰 Revenue At Risk
+- 🎯 Expected Recovery
+- ✅ Actual Revenue Recovered
+- 📈 Recovery Rate
+- Failed Payments
+- Checkout Abandonment
+- Subscription Failures
 
-The dashboard answers the most important question immediately:
+**Example**
 
-"How much money can REVIVE realistically bring back?"
+| Metric | Value |
+|---|---|
+| Revenue At Risk | ₹3.67L |
+| Expected Recovery | ₹2.48L |
+| Recovered | ₹1.42L |
+| Recovery Rate | 57.3% |
 
-2. 🔎 AI Revenue Leak Detection
+The dashboard answers the most important question immediately: *"How much money can REVIVE realistically bring back?"*
 
-REVIVE continuously analyzes payment activity to identify abnormal revenue leakage.
+### 2. 🔎 AI Revenue Leak Detection
 
-It detects patterns such as:
+REVIVE continuously analyzes payment activity to identify abnormal revenue leakage. It detects patterns such as:
 
-Sudden increase in payment failures
-Payment-method-specific failures
-Time-based failure spikes
-High-value failed transactions
-Recurring subscription failures
-Repeated customer payment failures
-Example
-⚠️ Revenue Leak Detected
+- Sudden increase in payment failures
+- Payment-method-specific failures
+- Time-based failure spikes
+- High-value failed transactions
+- Recurring subscription failures
+- Repeated customer payment failures
 
-UPI failures increased by 31%
-between 6 PM – 9 PM.
+**Example**
 
-Revenue affected:
-₹1.24L
+> ⚠️ **Revenue Leak Detected**
+>
+> UPI failures increased by 31% between 6 PM – 9 PM.
+>
+> Revenue affected: **₹1.24L**
+> Estimated recoverable: **₹87K**
 
-Estimated recoverable:
-₹87K
-3. 🧠 AI Failure Diagnosis
+### 3. 🧠 AI Failure Diagnosis
 
-REVIVE doesn't stop at identifying a failed transaction.
+REVIVE doesn't stop at identifying a failed transaction. It analyzes:
 
-It analyzes:
+- Payment status
+- Failure reason
+- Payment method
+- Customer transaction history
+- Previous successful payments
+- Retry history
+- Transaction amount
 
-Payment status
-Failure reason
-Payment method
-Customer transaction history
-Previous successful payments
-Retry history
-Transaction amount
+...and generates a structured diagnosis.
 
-and generates a structured diagnosis.
+**Example:** *"Likely temporary bank/network degradation."* Rather than immediately retrying the payment, REVIVE may recommend a delayed payment link.
 
-Example
-
-Likely temporary bank/network degradation.
-
-Rather than immediately retrying the payment, REVIVE may recommend a delayed payment link.
-
-4. 🎯 Recovery Probability Prediction
+### 4. 🎯 Recovery Probability Prediction
 
 Every recovery opportunity receives a predicted probability of successful recovery.
 
-Example:
-
+```
 Recovery Probability
-
 ████████████████░░░░ 82%
 
-Expected Recovery
-
-₹6,970
-
-Risk
-
-LOW
+Expected Recovery   ₹6,970
+Risk                 LOW
+```
 
 The prediction considers:
 
-Customer payment history
-Transaction amount
-Failure type
-Payment method
-Previous attempts
-Historical recovery outcomes
+- Customer payment history
+- Transaction amount
+- Failure type
+- Payment method
+- Previous attempts
+- Historical recovery outcomes
 
-The prediction layer is abstracted so the initial MVP can use a transparent scoring model and later be replaced with an ML model such as XGBoost without changing the agent architecture.
+The prediction layer is abstracted so the initial MVP can use a transparent scoring model and later be replaced with an ML model such as XGBoost, without changing the agent architecture.
 
-5. 🤖 Autonomous Recovery Agent
+### 5. 🤖 Autonomous Recovery Agent
 
 This is the core of REVIVE.
 
-The agent can:
-
+```
 Inspect Payment
        ↓
 Retrieve Customer History
@@ -250,222 +263,126 @@ Select Action
 Execute Approved Tool
        ↓
 Monitor Result
-Available Agent Tools
-get_payment()
+```
 
-Retrieves payment information.
+**Available Agent Tools**
 
-get_customer_history()
+| Tool | Description |
+|---|---|
+| `get_payment()` | Retrieves payment information |
+| `get_customer_history()` | Retrieves customer transaction history and behavioral signals |
+| `predict_recovery()` | Calculates recovery probability and expected recovery |
+| `get_recovery_policy()` | Retrieves merchant-defined recovery constraints |
+| `create_payment_link()` | Creates a Razorpay Payment Link for eligible recovery cases |
+| `escalate_case()` | Escalates high-risk or high-value cases for human review |
+| `stop_recovery()` | Stops recovery when further intervention is unlikely to be beneficial |
 
-Retrieves customer transaction history and behavioral signals.
+### 6. 🛡️ AI Guardrails & Policy Engine
 
-predict_recovery()
+REVIVE is not an unrestricted AI agent. Financial actions pass through deterministic business rules before execution.
 
-Calculates recovery probability and expected recovery.
+```
+IF payment already captured        → STOP
+IF retry limit exceeded            → STOP
+IF recovery probability < 30%      → STOP
+IF high-value transaction          → HUMAN REVIEW
+IF recovery probability > 60%      → CONSIDER RECOVERY
+IF merchant policy allows autonomy → EXECUTE
+```
 
-get_recovery_policy()
+> **The core principle is: The LLM recommends. The policy engine authorizes.**
 
-Retrieves merchant-defined recovery constraints.
-
-create_payment_link()
-
-Creates a Razorpay Payment Link for eligible recovery cases.
-
-escalate_case()
-
-Escalates high-risk or high-value cases for human review.
-
-stop_recovery()
-
-Stops recovery when further intervention is unlikely to be beneficial.
-
-6. 🛡️ AI Guardrails & Policy Engine
-
-REVIVE is not an unrestricted AI agent.
-
-Financial actions pass through deterministic business rules before execution.
-
-Example:
-
-IF payment already captured
-        ↓
-      STOP
-
-IF retry limit exceeded
-        ↓
-      STOP
-
-IF recovery probability < 30%
-        ↓
-      STOP
-
-IF high-value transaction
-        ↓
-   HUMAN REVIEW
-
-IF recovery probability > 60%
-        ↓
-   CONSIDER RECOVERY
-
-IF merchant policy allows autonomous action
-        ↓
-      EXECUTE
-
-The core principle is:
-
-The LLM recommends. The policy engine authorizes.
-
-7. 🔗 Razorpay Integration
+### 7. 🔗 Razorpay Integration
 
 REVIVE integrates with Razorpay Test Mode to demonstrate a complete recovery lifecycle.
 
-Razorpay capabilities
-Payment Links
-Payment status
-Payment events
-Webhooks
-Payment capture events
-Failed payment events
-Recovery Lifecycle
-Failed Payment
-      ↓
-REVIVE Analysis
-      ↓
-Recovery Decision
-      ↓
-Razorpay Payment Link
-      ↓
-Customer Payment
-      ↓
-Razorpay Webhook
-      ↓
-REVIVE Receives Event
-      ↓
-Recovery Case Updated
-      ↓
-₹ Revenue Recovered
+**Razorpay capabilities used**
+
+- Payment Links
+- Payment status
+- Payment events
+- Webhooks
+- Payment capture events
+- Failed payment events
+
+**Recovery Lifecycle**
+
+```
+Failed Payment → REVIVE Analysis → Recovery Decision → Razorpay Payment Link
+→ Customer Payment → Razorpay Webhook → REVIVE Receives Event
+→ Recovery Case Updated → ₹ Revenue Recovered
+```
 
 Razorpay documentation:
+- https://razorpay.com/docs/api/payments/payment-links/
+- https://razorpay.com/docs/webhooks/payments/
 
-https://razorpay.com/docs/api/payments/payment-links/
-https://razorpay.com/docs/webhooks/payments/
-8. 🔄 Real-Time Recovery Tracking
+### 8. 🔄 Real-Time Recovery Tracking
 
-REVIVE uses Supabase Realtime to update the dashboard when payment state changes.
+REVIVE uses Supabase Realtime to update the dashboard when payment state changes — no refresh required.
 
-Example:
+| Time | Event |
+|---|---|
+| 10:31:02 | Payment failure detected |
+| 10:31:03 | Customer history retrieved |
+| 10:31:04 | Recovery probability → 82% |
+| 10:31:05 | Policy → APPROVED |
+| 10:31:06 | Payment Link created |
+| 10:42:18 | Payment captured — **₹8,500 RECOVERED** |
 
-10:31:02
-Payment failure detected
-
-10:31:03
-Customer history retrieved
-
-10:31:04
-Recovery probability → 82%
-
-10:31:05
-Policy → APPROVED
-
-10:31:06
-Payment Link created
-
-10:42:18
-Payment captured
-
-10:42:18
-₹8,500 RECOVERED
-
-The merchant does not need to refresh the dashboard.
-
-9. 🧪 Recovery Strategy Simulator
-
-One of REVIVE's key differentiating features.
+### 9. 🧪 Recovery Strategy Simulator
 
 Before contacting a customer, merchants can compare potential recovery strategies.
 
-Strategies
-Strategy	Expected Recovery	Customer Friction
-Immediate Retry	₹71K	High
-Payment Link	₹1.14L	Medium
-Delayed Payment Link	₹1.31L	Low
-Human Escalation	₹82K	High
+| Strategy | Expected Recovery | Customer Friction |
+|---|---|---|
+| Immediate Retry | ₹71K | High |
+| Payment Link | ₹1.14L | Medium |
+| Delayed Payment Link | ₹1.31L | Low |
+| Human Escalation | ₹82K | High |
 
 REVIVE recommends the strategy with the best expected value while considering customer friction.
 
-Example
+> **REVIVE Recommendation: Delayed Payment Link**
+> 57% estimated recovery — highest expected recovery with lower customer friction.
 
-REVIVE Recommendation
+### 10. 🔍 AI Decision Audit Trail
 
-Delayed Payment Link
+Every AI decision is traceable. The system records timestamp, recovery case, tool used, input, output, decision, policy result, and execution result.
 
-57% estimated recovery
+| Time | Action | Result |
+|---|---|---|
+| 10:31:04 | `predict_recovery()` | Probability: 82% |
+| 10:31:05 | `get_recovery_policy()` | APPROVED |
+| 10:31:06 | `create_payment_link()` | SUCCESS |
+| 10:42:18 | `payment.captured` | ₹8,500 RECOVERED |
 
-Highest expected recovery with lower customer friction.
+This makes the agent **observable, explainable, auditable,** and **safer to deploy**.
 
-10. 🔍 AI Decision Audit Trail
+---
 
-Every AI decision is traceable.
+## 🧩 System Architecture
 
-The system records:
-
-Timestamp
-Recovery case
-Tool used
-Input
-Output
-Decision
-Policy result
-Execution result
-
-Example:
-
-10:31:04
-predict_recovery()
-
-Probability: 82%
-
-10:31:05
-get_recovery_policy()
-
-Result: APPROVED
-
-10:31:06
-create_payment_link()
-
-Result: SUCCESS
-
-10:42:18
-payment.captured
-
-Result: ₹8,500 RECOVERED
-
-This makes the agent:
-
-Observable
-Explainable
-Auditable
-Safer to deploy
-🧩 System Architecture
+```
                          ┌─────────────────────┐
-                         │    REVIVE AI UI     │
-                         │   React + Lovable   │
-                         └──────────┬──────────┘
+                         │    REVIVE AI UI      │
+                         │   React + Lovable     │
+                         └──────────┬───────────┘
                                     │
                                     ▼
                          ┌─────────────────────┐
-                         │      Supabase       │
-                         │                     │
-                         │ PostgreSQL          │
-                         │ Authentication      │
-                         │ Realtime            │
-                         └──────────┬──────────┘
+                         │      Supabase        │
+                         │                      │
+                         │ PostgreSQL           │
+                         │ Authentication       │
+                         │ Realtime             │
+                         └──────────┬───────────┘
                                     │
                          ┌──────────┴──────────┐
                          │                     │
                          ▼                     ▼
                  ┌───────────────┐     ┌──────────────┐
-                 │ Edge Functions│     │  Realtime    │
+                 │ Edge Functions │     │  Realtime    │
                  └───────┬───────┘     └──────────────┘
                          │
               ┌──────────┼───────────┐
@@ -483,13 +400,16 @@ Safer to deploy
                          │
                          ▼
                     Audit Trail
-🧠 AI Architecture
+```
+
+## 🧠 AI Architecture
 
 REVIVE separates reasoning from execution.
 
+```
                  ┌───────────────┐
-                 │      LLM      │
-                 │   Reasoning   │
+                 │      LLM       │
+                 │   Reasoning    │
                  └───────┬───────┘
                          │
                          ▼
@@ -507,45 +427,48 @@ REVIVE separates reasoning from execution.
                   │
                   ▼
                Razorpay
+```
 
 This prevents the LLM from directly performing unrestricted financial operations.
 
-🤖 Recovery Prediction Model
+---
+
+## 🤖 Recovery Prediction Model
 
 The MVP uses a transparent recovery scoring layer.
 
-Example signals:
+**Example signals**
 
-Customer success history        +20%
-Previous successful payments    +15%
-Failure type                    +10%
-Payment method                   +5%
-Transaction amount              ±
-Previous retry attempts         -5%
+| Signal | Weight |
+|---|---|
+| Customer success history | +20% |
+| Previous successful payments | +15% |
+| Failure type | +10% |
+| Payment method | +5% |
+| Transaction amount | ± |
+| Previous retry attempts | −5% |
 
-Example:
+**Worked example**
 
-Base Probability             40%
-Returning Customer            +20%
-Strong Payment History        +15%
-Temporary Bank Error          +10%
-Previous Retry                 -5%
-                             ─────
-                              80%
+```
+Base Probability            40%
+Returning Customer          +20%
+Strong Payment History      +15%
+Temporary Bank Error        +10%
+Previous Retry               -5%
+                            ─────
+                             80%
+```
 
-The model interface is designed so it can later be replaced with:
+The model interface is designed so it can later be replaced with **XGBoost**, **LightGBM**, **Logistic Regression**, or **hosted ML inference** — without changing the recovery agent.
 
-XGBoost
-LightGBM
-Logistic Regression
-Hosted ML inference
+---
 
-without changing the recovery agent.
-
-🗄️ Database Schema
+## 🗄️ Database Schema
 
 REVIVE uses PostgreSQL through Supabase.
 
+```
 merchants
     │
     ├───────────────┐
@@ -566,18 +489,27 @@ customers        payments
          agent_logs
 
 webhook_events
-Core Tables
-Table	Purpose
-merchants	Merchant configuration
-customers	Customer profiles and history
-payments	Payment transactions
-revenue_risk	Recovery predictions
-recovery_cases	Recovery lifecycle
-recovery_actions	Executed agent actions
-payment_links	Razorpay recovery links
-agent_logs	Agent reasoning and tool activity
-webhook_events	Razorpay webhook history
-📁 Project Structure
+```
+
+**Core Tables**
+
+| Table | Purpose |
+|---|---|
+| `merchants` | Merchant configuration |
+| `customers` | Customer profiles and history |
+| `payments` | Payment transactions |
+| `revenue_risk` | Recovery predictions |
+| `recovery_cases` | Recovery lifecycle |
+| `recovery_actions` | Executed agent actions |
+| `payment_links` | Razorpay recovery links |
+| `agent_logs` | Agent reasoning and tool activity |
+| `webhook_events` | Razorpay webhook history |
+
+---
+
+## 📁 Project Structure
+
+```
 revive-ai/
 │
 ├── public/
@@ -627,502 +559,353 @@ revive-ai/
 ├── package.json
 ├── README.md
 └── LICENSE
-🛠️ Technology Stack
-Frontend
-React
-TypeScript
-Vite
-Tailwind CSS
-Recharts
-Lucide Icons
-Backend
-Supabase
-PostgreSQL
-Supabase Edge Functions
-Supabase Realtime
-Payments
-Razorpay Test Mode
-Razorpay Payment Links
-Razorpay Webhooks
-AI
-LLM with structured output
-Tool calling
-AI Agent
-Recovery Prediction Engine
-Policy/Guardrail Engine
-ML
+```
 
-Current MVP:
+---
 
-Transparent recovery scoring model
+## 🛠️ Technology Stack
 
-Future:
+**Frontend**
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide Icons
 
-XGBoost recovery prediction
-Merchant-specific model calibration
-Continuous learning from recovery outcomes
-🔐 Security Architecture
+**Backend**
+- Supabase
+- PostgreSQL
+- Supabase Edge Functions
+- Supabase Realtime
+
+**Payments**
+- Razorpay Test Mode
+- Razorpay Payment Links
+- Razorpay Webhooks
+
+**AI**
+- LLM with structured output
+- Tool calling
+- AI Agent
+- Recovery Prediction Engine
+- Policy/Guardrail Engine
+
+**ML**
+- Current MVP: Transparent recovery scoring model
+- Future: XGBoost recovery prediction, merchant-specific model calibration, continuous learning from recovery outcomes
+
+---
+
+## 🔐 Security Architecture
 
 REVIVE follows a server-only secret architecture.
 
-Browser-safe
+**Browser-safe**
+```env
 VITE_SUPABASE_URL=...
 VITE_SUPABASE_ANON_KEY=...
-Server-only
+```
+
+**Server-only**
+```env
 RAZORPAY_KEY_ID=...
 RAZORPAY_KEY_SECRET=...
 RAZORPAY_WEBHOOK_SECRET=...
 LLM_API_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
+```
 
-Sensitive credentials are never exposed to the client.
+Sensitive credentials are never exposed to the client. Razorpay webhook signatures are validated server-side before processing events.
 
-Razorpay webhook signatures are validated server-side before processing events.
+---
 
-🛡️ AI Safety & Guardrails
+## 🛡️ AI Safety & Guardrails
 
-REVIVE follows the principle:
+REVIVE follows the principle: **AI recommends. Policy authorizes.**
 
-AI recommends. Policy authorizes.
+The agent **cannot**:
 
-The agent cannot:
-
-Charge a captured payment
-Exceed retry limits
-Bypass merchant policies
-Fabricate payment results
-Access secrets
-Execute unsupported actions
-Repeatedly contact customers without authorization
+- Charge a captured payment
+- Exceed retry limits
+- Bypass merchant policies
+- Fabricate payment results
+- Access secrets
+- Execute unsupported actions
+- Repeatedly contact customers without authorization
 
 Every financial action follows:
 
-AI Decision
-     ↓
-Policy Validation
-     ↓
-Authorization
-     ↓
-Tool Execution
-     ↓
-Audit Log
-🎨 Product Pages
-Dashboard
+```
+AI Decision → Policy Validation → Authorization → Tool Execution → Audit Log
+```
 
-Executive revenue overview.
+---
 
-Revenue Leaks
+## 🎨 Product Pages
 
-Identify and diagnose revenue leakage.
+| Page | Description |
+|---|---|
+| **Dashboard** | Executive revenue overview |
+| **Revenue Leaks** | Identify and diagnose revenue leakage |
+| **Recovery Center** | Manage active recovery opportunities |
+| **Recovery Simulator** | Compare intervention strategies |
+| **AI Agent** | Observe autonomous decision-making |
+| **Audit Trail** | Inspect every AI decision and tool call |
+| **Settings** | Configure merchant recovery policies and AI autonomy |
 
-Recovery Center
+---
 
-Manage active recovery opportunities.
+## ⚡ Quick Start
 
-Recovery Simulator
+### 1. Clone Repository
 
-Compare intervention strategies.
-
-AI Agent
-
-Observe autonomous decision-making.
-
-Audit Trail
-
-Inspect every AI decision and tool call.
-
-Settings
-
-Configure merchant recovery policies and AI autonomy.
-
-⚡ Quick Start
-1. Clone Repository
+```bash
 git clone https://github.com/YOUR_USERNAME/revive-ai.git
-
 cd revive-ai
-2. Install Dependencies
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
-3. Configure Environment
+```
 
-Create:
+### 3. Configure Environment
 
-.env
+Create a `.env` file:
 
-Example:
-
+```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_public_key
-Server-side secrets
+```
 
-Configure these through Supabase Edge Function secrets:
+**Server-side secrets** — configure through Supabase Edge Function secrets:
 
+```env
 RAZORPAY_KEY_ID=rzp_test_xxxxx
 RAZORPAY_KEY_SECRET=xxxxx
 RAZORPAY_WEBHOOK_SECRET=xxxxx
 LLM_API_KEY=xxxxx
+```
 
-Never commit secrets to GitHub.
+> ⚠️ Never commit secrets to GitHub.
 
-▶️ Run Locally
+### 4. Run Locally
+
+```bash
 npm run dev
+```
 
-Open:
+Open [http://localhost:5173](http://localhost:5173)
 
-http://localhost:5173
-🧪 Demo Mode
+---
 
-REVIVE includes synthetic transaction data for demonstration.
+## 🧪 Demo Mode
 
-The demo dataset contains:
+REVIVE includes synthetic transaction data for demonstration. The demo dataset contains:
 
-Successful payments
-Failed payments
-UPI failures
-Card failures
-Authentication failures
-Subscription failures
-High-value customers
-Returning customers
-Recoverable transactions
+- Successful payments
+- Failed payments
+- UPI failures
+- Card failures
+- Authentication failures
+- Subscription failures
+- High-value customers
+- Returning customers
+- Recoverable transactions
 
 This allows the complete AI recovery pipeline to be demonstrated without requiring production payment data.
 
-🔄 Example End-to-End Scenario
-Scenario
+---
 
-A returning customer attempts a:
+## 🔄 Example End-to-End Scenario
 
-₹8,500 payment
+**Scenario:** A returning customer attempts a **₹8,500** payment. The payment fails because of a temporary bank error.
 
-The payment fails because of a temporary bank error.
+| Step | Description | Result |
+|---|---|---|
+| 1 — Detection | REVIVE detects the failed transaction | Revenue At Risk: ₹8,500 |
+| 2 — Diagnosis | Agent retrieves payment history, customer history, failure reason, previous attempts | — |
+| 3 — Prediction | Calculates recovery probability | 82% → Expected Recovery ₹6,970 |
+| 4 — Strategy Selection | Evaluates Immediate Retry, Payment Link, Delayed Payment Link, Human Escalation | Selects **Delayed Payment Link** (better expected recovery, lower friction) |
+| 5 — Policy Validation | Checks probability threshold, retry limit, amount threshold, autonomy setting | ✓ APPROVED |
+| 6 — Execution | Creates Razorpay Payment Link | — |
+| 7 — Customer Payment | Customer completes the payment | — |
+| 8 — Webhook | Razorpay sends `payment.captured`; REVIVE validates it | — |
+| 9 — Recovery | Revenue recovered | ₹8,500 RECOVERED |
+| 10 — Audit | Full decision chain preserved | Detection → Diagnosis → Prediction → Policy → Action → Payment → Recovery |
 
-Step 1 — Detection
+---
 
-REVIVE detects the failed transaction.
-
-Revenue At Risk
-
-₹8,500
-Step 2 — Diagnosis
-
-The agent retrieves:
-
-Payment History
-Customer History
-Failure Reason
-Previous Attempts
-Step 3 — Prediction
-Recovery Probability
-
-82%
-
-Expected Recovery
-
-₹6,970
-Step 4 — Strategy Selection
-
-REVIVE evaluates:
-
-Immediate Retry
-Payment Link
-Delayed Payment Link
-Human Escalation
-
-The agent selects:
-
-Delayed Payment Link
-
-because it provides a better expected recovery with lower customer friction.
-
-Step 5 — Policy Validation
-
-Merchant policy:
-
-Probability threshold met
-Retry limit not exceeded
-Amount below escalation threshold
-Autonomous recovery enabled
-
-Result:
-
-✓ APPROVED
-Step 6 — Execution
-
-REVIVE creates a Razorpay Payment Link.
-
-Step 7 — Customer Payment
-
-The customer completes the payment.
-
-Step 8 — Razorpay Webhook
-
-Razorpay sends:
-
-payment.captured
-
-REVIVE receives and validates the webhook.
-
-Step 9 — Recovery
-₹8,500 RECOVERED
-
-Dashboard metrics update automatically.
-
-Step 10 — Audit
-
-The complete decision chain is preserved:
-
-Detection
-    ↓
-Diagnosis
-    ↓
-Prediction
-    ↓
-Policy
-    ↓
-Action
-    ↓
-Payment
-    ↓
-Recovery
-📈 Success Metrics
+## 📈 Success Metrics
 
 REVIVE measures the following KPIs.
 
-Recovery Rate
-Recovered Revenue
-────────────────── × 100
-Revenue At Risk
-Expected Recovery
-Σ (Amount × Recovery Probability)
-Recovery Efficiency
-Actual Recovery
-────────────────
-Expected Recovery
-Customer Friction
+**Recovery Rate**
+```
+Recovery Rate = (Recovered Revenue / Revenue At Risk) × 100
+```
 
-Measures the number and aggressiveness of interventions required to recover revenue.
+**Expected Recovery**
+```
+Expected Recovery = Σ (Amount × Recovery Probability)
+```
 
-🌟 What Makes REVIVE Different?
+**Recovery Efficiency**
+```
+Recovery Efficiency = Actual Recovery / Expected Recovery
+```
 
-Most payment systems tell merchants:
+**Customer Friction** — measures the number and aggressiveness of interventions required to recover revenue.
 
-"This payment failed."
+---
 
-REVIVE tells them:
+## 🌟 What Makes REVIVE Different?
 
-"This payment failed, here's why, there's an 82% chance we can recover ₹6,970, this is the least-friction strategy, the policy allows it, I've executed it, and here's proof that ₹8,500 was recovered."
+Most payment systems tell merchants: *"This payment failed."*
 
-Traditional Analytics
-Payment Failed
-      ↓
-Dashboard
-      ↓
-Human Intervention
-REVIVE
-Payment Failed
-      ↓
-AI Diagnosis
-      ↓
-Recovery Prediction
-      ↓
-Strategy Simulation
-      ↓
-Policy Validation
-      ↓
-Autonomous Action
-      ↓
-Razorpay
-      ↓
-Webhook
-      ↓
-Revenue Recovered
-🏆 Why REVIVE Fits the AI Revenue Recovery Track
+REVIVE tells them: *"This payment failed, here's why, there's an 82% chance we can recover ₹6,970, this is the least-friction strategy, the policy allows it, I've executed it, and here's proof that ₹8,500 was recovered."*
 
-REVIVE directly focuses on recovering lost merchant revenue rather than merely analyzing payment data.
+| Traditional Analytics | REVIVE |
+|---|---|
+| Payment Failed → Dashboard → Human Intervention | Payment Failed → AI Diagnosis → Recovery Prediction → Strategy Simulation → Policy Validation → Autonomous Action → Razorpay → Webhook → Revenue Recovered |
 
-The system combines:
+---
 
-Payment intelligence
-Predictive modeling
-Agentic reasoning
-Tool calling
-Policy enforcement
-Razorpay APIs
-Webhooks
-Real-time analytics
-Explainable AI
-Measurable revenue outcomes
+## 🏆 Why REVIVE Fits the AI Revenue Recovery Track
 
-The core KPI isn't:
+REVIVE directly focuses on recovering lost merchant revenue rather than merely analyzing payment data. The system combines:
 
-"How intelligent is the chatbot?"
+- Payment intelligence
+- Predictive modeling
+- Agentic reasoning
+- Tool calling
+- Policy enforcement
+- Razorpay APIs
+- Webhooks
+- Real-time analytics
+- Explainable AI
+- Measurable revenue outcomes
 
-It is:
+The core KPI isn't *"How intelligent is the chatbot?"* — it is **"How much revenue did the agent recover?"**
 
-"How much revenue did the agent recover?"
+---
 
-🔮 Roadmap
-Phase 1 — MVP
- Razorpay Test Mode
- Payment failure detection
- Recovery prediction
- AI agent
- Payment Links
- Webhooks
- Revenue dashboard
- Audit trail
-Phase 2 — Intelligent Recovery
- XGBoost prediction
- Merchant-specific recovery models
- Strategy A/B testing
- Dynamic recovery timing
- Customer segmentation
-Phase 3 — Autonomous Revenue Operations
- Subscription recovery
- Smart retry scheduling
- Personalized recovery channels
- Multi-agent revenue optimization
- Revenue forecasting
-Phase 4 — Enterprise
- Multi-merchant support
- Role-based access control
- Advanced compliance
- Model monitoring
- Explainable AI
- Enterprise audit controls
-🎥 5-Minute Hackathon Demo
+## 🔮 Roadmap
 
-The recommended live demonstration:
+### Phase 1 — MVP
+- [x] Razorpay Test Mode
+- [x] Payment failure detection
+- [x] Recovery prediction
+- [x] AI agent
+- [x] Payment Links
+- [x] Webhooks
+- [x] Revenue dashboard
+- [x] Audit trail
 
-00:00 — THE PROBLEM
+### Phase 2 — Intelligent Recovery
+- [ ] XGBoost prediction
+- [ ] Merchant-specific recovery models
+- [ ] Strategy A/B testing
+- [ ] Dynamic recovery timing
+- [ ] Customer segmentation
 
-"Failed payments don't necessarily mean lost customers."
+### Phase 3 — Autonomous Revenue Operations
+- [ ] Subscription recovery
+- [ ] Smart retry scheduling
+- [ ] Personalized recovery channels
+- [ ] Multi-agent revenue optimization
+- [ ] Revenue forecasting
 
-00:30 — DASHBOARD
+### Phase 4 — Enterprise
+- [ ] Multi-merchant support
+- [ ] Role-based access control
+- [ ] Advanced compliance
+- [ ] Model monitoring
+- [ ] Explainable AI
+- [ ] Enterprise audit controls
 
-Show:
+---
 
-₹3.67L Revenue At Risk
-₹2.48L Expected Recovery
+## 🎥 5-Minute Hackathon Demo
 
-01:15 — AI DIAGNOSIS
+Recommended live demonstration script:
 
-Select an ₹8,500 failed payment.
+| Time | Segment | Details |
+|---|---|---|
+| 00:00 | The Problem | "Failed payments don't necessarily mean lost customers." |
+| 00:30 | Dashboard | Show ₹3.67L Revenue At Risk, ₹2.48L Expected Recovery |
+| 01:15 | AI Diagnosis | Select an ₹8,500 failed payment; show 82% recovery probability |
+| 01:50 | Strategy Simulator | Compare Immediate Retry, Payment Link, Delayed Payment Link, Human Escalation |
+| 02:30 | AI Agent | Show the agent deciding "Delayed Payment Link" |
+| 03:00 | Policy Engine | Show recovery threshold, retry limits, amount policy, autonomous action allowed |
+| 03:30 | Razorpay | Create Payment Link in Test Mode |
+| 04:00 | Payment | Complete the test payment |
+| 04:20 | Webhook | Show `payment.captured` |
+| 04:35 | Revenue Recovered | Dashboard updates: ₹8,500 RECOVERED |
+| 04:50 | Audit Trail | Show Detection → Diagnosis → Prediction → Policy → Action → Payment → Recovery |
+| 05:00 | Closing | "REVIVE doesn't just tell merchants what revenue they lost. It finds what can be recovered, decides how to recover it, acts within guardrails, and proves the money came back." |
 
-Show:
+---
 
-82% recovery probability.
+## 🎤 One-Line Pitch
 
-01:50 — STRATEGY SIMULATOR
+> REVIVE AI is an autonomous revenue recovery agent that turns failed payments into measurable recovered revenue by detecting leaks, predicting recovery probability, selecting the least-friction strategy, executing Razorpay-powered recovery actions within policy guardrails, and proving the money came back.
 
-Compare:
+## 💬 The 30-Second Pitch
 
-Immediate Retry
-Payment Link
-Delayed Payment Link
-Human Escalation
+> Payment failure doesn't always mean lost revenue. REVIVE AI acts as an autonomous revenue recovery employee for merchants. It detects revenue leaks, diagnoses why payments failed, predicts which transactions are worth recovering, simulates recovery strategies, and selects the least-friction intervention. Its AI agent can then execute bounded recovery actions through Razorpay, while a deterministic policy engine prevents unsafe actions. Razorpay webhooks close the loop by telling REVIVE when money is actually recovered. So instead of simply showing merchants failed payments, REVIVE answers the question that matters most: "How much revenue can we recover, and can we prove that we recovered it?"
 
-02:30 — AI AGENT
+---
 
-Show the agent deciding:
+## 🧠 Core Design Principle
 
-"Delayed Payment Link"
-
-03:00 — POLICY ENGINE
-
-Show:
-
-✓ Recovery threshold
-✓ Retry limits
-✓ Amount policy
-✓ Autonomous action allowed
-
-03:30 — RAZORPAY
-
-Create Payment Link in Test Mode.
-
-04:00 — PAYMENT
-
-Complete the test payment.
-
-04:20 — WEBHOOK
-
-Show:
-
-payment.captured
-
-04:35 — REVENUE RECOVERED
-
-Dashboard updates:
-
-₹8,500 RECOVERED
-
-04:50 — AUDIT TRAIL
-
-Show:
-
-Detection
-→ Diagnosis
-→ Prediction
-→ Policy
-→ Action
-→ Payment
-→ Recovery
-
-05:00 — CLOSING
-
-"REVIVE doesn't just tell merchants what revenue they lost.
-
-It finds what can be recovered, decides how to recover it, acts within guardrails, and proves the money came back."
-🎤 One-Line Pitch
-
-REVIVE AI is an autonomous revenue recovery agent that turns failed payments into measurable recovered revenue by detecting leaks, predicting recovery probability, selecting the least-friction strategy, executing Razorpay-powered recovery actions within policy guardrails, and proving the money came back.
-
-💬 The 30-Second Pitch
-
-Payment failure doesn't always mean lost revenue. REVIVE AI acts as an autonomous revenue recovery employee for merchants. It detects revenue leaks, diagnoses why payments failed, predicts which transactions are worth recovering, simulates recovery strategies, and selects the least-friction intervention. Its AI agent can then execute bounded recovery actions through Razorpay, while a deterministic policy engine prevents unsafe actions. Razorpay webhooks close the loop by telling REVIVE when money is actually recovered. So instead of simply showing merchants failed payments, REVIVE answers the question that matters most: "How much revenue can we recover, and can we prove that we recovered it?"
-
-🧠 Core Design Principle
+```
         ┌───────────────────────┐
-        │          AI           │
-        │  Reason + Recommend   │
+        │          AI            │
+        │  Reason + Recommend    │
         └───────────┬───────────┘
                     │
                     ▼
         ┌───────────────────────┐
-        │    POLICY ENGINE      │
-        │ Validate + Authorize  │
+        │    POLICY ENGINE       │
+        │ Validate + Authorize   │
         └───────────┬───────────┘
                     │
                     ▼
         ┌───────────────────────┐
-        │       TOOLS           │
-        │ Execute + Integrate   │
+        │       TOOLS            │
+        │ Execute + Integrate    │
         └───────────┬───────────┘
                     │
                     ▼
         ┌───────────────────────┐
-        │       RAZORPAY        │
-        │ Payment Infrastructure│
+        │       RAZORPAY         │
+        │ Payment Infrastructure │
         └───────────┬───────────┘
                     │
                     ▼
         ┌───────────────────────┐
-        │       WEBHOOK         │
-        │ Observe the Outcome   │
+        │       WEBHOOK           │
+        │ Observe the Outcome    │
         └───────────┬───────────┘
                     │
                     ▼
         ┌───────────────────────┐
-        │       REVIVE          │
-        │ Prove Revenue Recovery│
+        │       REVIVE            │
+        │ Prove Revenue Recovery │
         └───────────────────────┘
-❤️ REVIVE AI
+```
+
+---
+
+## ❤️ REVIVE AI
 
 Revenue shouldn't disappear just because a payment failed.
 
-REVIVE finds the money worth recovering — and brings it back.
+**REVIVE finds the money worth recovering — and brings it back.**
 
 Built with ❤️ for the Razorpay Buildathon
 
-REVIVE AI — Detect. Diagnose. Recover. Prove.
+**REVIVE AI — Detect. Diagnose. Recover. Prove.**
